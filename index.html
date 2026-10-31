@@ -120,6 +120,7 @@
     <nav class="w-full max-w-6xl mx-auto flex flex-row justify-between items-center px-5 py-4" aria-label="Main">
       <a href="index.html" class="logo-link" aria-label="Dynamites Band home"><img class="logo-img" src="/images/logo-wordmark.png" width="1360" height="114" alt="Dynamites Band"></a>
       <ul class="hidden md:flex flex-row items-center gap-8">
+        <li><a class="nav-link" href="#schedule">Schedule</a></li>
         <li><a class="nav-link" href="#about">About</a></li>
         <li><a class="nav-link" href="#members">Members</a></li>
         <li><a class="nav-link" href="videos.html">Live</a></li>
@@ -132,6 +133,7 @@
     </nav>
     <div id="mobileMenu" class="hidden md:hidden bg-[#18181c]/95 backdrop-blur border-t border-white/10 px-5 py-6">
       <ul class="flex flex-col gap-5">
+        <li><a class="nav-link" href="#schedule">Schedule</a></li>
         <li><a class="nav-link" href="#about">About</a></li>
         <li><a class="nav-link" href="#members">Members</a></li>
         <li><a class="nav-link" href="videos.html">Live</a></li>
@@ -157,6 +159,7 @@
           <a href="videos.html" class="btn btn-solid">Watch live</a>
           <a href="booking.html" class="btn btn-ghost">Book the band</a>
         </div>
+        <a id="nextShow" href="#schedule" class="next-pill reveal d2" hidden></a>
       </div>
       <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block" aria-hidden="true"><div class="scroll-hint"></div></div>
     </section>
@@ -170,6 +173,23 @@
       </div>
     </div>
     <!-- marquee ./ -->
+
+    <!-- schedule -->
+    <section id="schedule" class="py-20 lg:py-28 px-5" aria-label="Performance schedule">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 reveal">
+          <div>
+            <p class="eyebrow mb-3">Schedule</p>
+            <h2 class="section-heading text-5xl lg:text-6xl text-white">Catch us <span class="italic text-accent">this week</span></h2>
+          </div>
+          <div class="sch-meta"><span id="schLive" class="sch-live"><i></i>Live schedule</span><span id="schRange"></span></div>
+        </div>
+        <div id="schWeek" class="sch-week" aria-live="polite"></div>
+        <p class="mt-8 text-center text-stone-400">Want the band at your event? <a class="text-accent underline underline-offset-4" href="booking.html">Book us</a></p>
+      </div>
+    </section>
+    <!-- schedule ./ -->
+
 
     <!-- about -->
     <section id="about" class="sec-light py-24 lg:py-36 px-5">
