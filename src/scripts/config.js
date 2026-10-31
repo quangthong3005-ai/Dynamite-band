@@ -4,7 +4,7 @@
 // ============================================================
 export const config = {
   // Booking email: the contact box, the email app and Gmail buttons all send here
-  email: 'nlhp1506@gmail.com',
+  email: 'nlhphuc1506@gmail.com',
 
   // Phone number used for Zalo, e.g. '0901234567'. Leave '' to show "coming soon".
   zalo: '0962914916',
