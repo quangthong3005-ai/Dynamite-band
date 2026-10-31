@@ -3,8 +3,8 @@
 //  You do not need to touch the HTML for these.
 // ============================================================
 export const config = {
-  // Booking email shown on the site (TODO: replace with the band's own email)
-  email: 'quangthong3005@gmail.com',
+  // Booking email: the contact box, the email app and Gmail buttons all send here
+  email: 'nlhp1506@gmail.com',
 
   // Phone number used for Zalo, e.g. '0901234567'. Leave '' to show "coming soon".
   zalo: '0962914916',
