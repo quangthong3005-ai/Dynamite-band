@@ -211,3 +211,15 @@ a.member:hover .member-photo img { transform: scale(1.05); filter: none; }
 .wm-about { right: -9%; top: 50%; transform: translateY(-50%); opacity: .07; }
 .wm-booking { left: -8%; bottom: -26%; filter: brightness(0); opacity: .1; }
 #about > div, #booking > div { position: relative; z-index: 1; }
+
+/* admin tabs + photos */
+.admin-tabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.admin-tab { background: none; border: 1px solid var(--line); color: #a8a29e; padding: .55rem 1.1rem; cursor: pointer; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+.admin-tab.active, .admin-tab:hover { color: #fff; border-color: var(--color-accent); }
+.admin-input { background: #131316; border: 1px solid var(--line); color: #e7e5e4; padding: .55rem .8rem; font-size: .9rem; min-width: 0; }
+.photo-admin { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; }
+.photo-card { display: flex; flex-direction: column; gap: .5rem; }
+.photo-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 250px; gap: 14px; }
+.photo-grid > div { min-height: 0; }
+@media (max-width: 720px) { .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 200px; } }

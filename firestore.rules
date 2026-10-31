@@ -3,10 +3,17 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     // Google accounts that may read and reply to every conversation.
-    function isAdmin() {
+    function isOwner() {
       return request.auth != null
         && request.auth.token.email_verified == true
         && request.auth.token.email in ['quangthong3005@gmail.com'];
+    }
+    // Owner, or anyone the owner added on the admin page (editors collection).
+    function isAdmin() {
+      return isOwner()
+        || (request.auth != null
+            && request.auth.token.email_verified == true
+            && exists(/databases/$(database)/documents/editors/$(request.auth.token.email)));
     }
 
     // One conversation per visitor. The document id is the visitor's anonymous user id.
@@ -25,6 +32,26 @@ service cloud.firestore {
           && ((request.auth.uid == chatId && request.resource.data.from == 'customer')
               || (isAdmin() && request.resource.data.from == 'band'));
       }
+    }
+
+    // Gallery photos: everyone can see them, only band admins can add / change / remove.
+    match /photos/{photoId} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && request.resource.data.src is string
+        && request.resource.data.src.size() < 950000
+        && request.resource.data.caption is string
+        && request.resource.data.caption.size() <= 80;
+      allow update: if isAdmin()
+        && request.resource.data.caption is string
+        && request.resource.data.caption.size() <= 80;
+      allow delete: if isAdmin();
+    }
+
+    // Extra editors (email = document id). Only the owner manages this list.
+    match /editors/{email} {
+      allow read: if request.auth != null && (isOwner() || request.auth.token.email == email);
+      allow write: if isOwner();
     }
   }
 }
