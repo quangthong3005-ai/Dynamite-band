@@ -53,5 +53,32 @@ service cloud.firestore {
       allow read: if request.auth != null && (isOwner() || request.auth.token.email == email);
       allow write: if isOwner();
     }
+
+    // Videos shown on the website (YouTube id + title). Everyone reads, admins manage.
+    match /videos/{videoId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && (!('ytId' in request.resource.data) || (request.resource.data.ytId is string && request.resource.data.ytId.size() <= 20))
+        && (!('title' in request.resource.data) || (request.resource.data.title is string && request.resource.data.title.size() <= 100));
+      allow delete: if isAdmin();
+    }
+
+    // Band member details that override or extend the built-in list.
+    match /members/{memberId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.name is string && request.resource.data.name.size() <= 60
+        && (!('role' in request.resource.data) || request.resource.data.role.size() <= 60)
+        && (!('bio' in request.resource.data) || request.resource.data.bio.size() <= 600)
+        && (!('portfolio' in request.resource.data) || request.resource.data.portfolio.size() <= 300)
+        && (!('photo' in request.resource.data) || request.resource.data.photo.size() < 950000);
+      allow delete: if isAdmin();
+    }
+
+    // Editable website texts (document id: texts).
+    match /site/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
   }
 }

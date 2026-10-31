@@ -1,5 +1,6 @@
 import '../css/style.css'
 import { auth, db } from './firebase.js'
+import { resizeToDataUrl } from './image-utils.js'
 import { adminEmails } from './firebase-config.js'
 import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { collection, query, orderBy, onSnapshot, doc, setDoc, addDoc, getDoc, deleteDoc, updateDoc, serverTimestamp } from 'firebase/firestore'
@@ -35,34 +36,16 @@ onAuthStateChanged(auth, async (user) => {
   if (unsubPhotos) { unsubPhotos(); unsubPhotos = null }
   if (unsubEditors) { unsubEditors(); unsubEditors = null }
   if (ok) { watchChats(); watchPhotos(); if (owner) watchEditors() }
+  window.dispatchEvent(new CustomEvent('admin-state', { detail: { ok } }))
 })
 
 // ---------- tabs ----------
 document.querySelectorAll('.admin-tab').forEach((b) => b.addEventListener('click', () => {
   document.querySelectorAll('.admin-tab').forEach((x) => x.classList.toggle('active', x === b))
-  for (const t of ['inbox', 'photos', 'team']) $('tab-' + t).hidden = t !== b.dataset.tab
+  document.querySelectorAll('.admin-tab').forEach((x) => { $('tab-' + x.dataset.tab).hidden = x !== b })
 }))
 
 // ---------- photos ----------
-function resizeToDataUrl(file, max = 1600) {
-  return new Promise((resolve, reject) => {
-    const url = URL.createObjectURL(file)
-    const img = new Image()
-    img.onload = () => {
-      const k = Math.min(1, max / Math.max(img.width, img.height))
-      const c = document.createElement('canvas')
-      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k)
-      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height)
-      URL.revokeObjectURL(url)
-      let q = 0.84, out = c.toDataURL('image/jpeg', q)
-      while (out.length > 900000 && q > 0.4) { q -= 0.08; out = c.toDataURL('image/jpeg', q) }
-      out.length > 900000 ? reject(new Error('too big')) : resolve(out)
-    }
-    img.onerror = () => reject(new Error('not an image'))
-    img.src = url
-  })
-}
-
 $('photoForm').addEventListener('submit', async (e) => {
   e.preventDefault()
   const files = Array.from($('photoFile').files)

@@ -1,14 +1,26 @@
 import { videoCard } from './common.js'
-import { config } from './config.js'
+import { getVideos, getTexts } from './content.js'
+import { TEXT_FIELDS } from './site-text.js'
+import './members.js'
 
-// ---------- featured live video on the home page ----------
+// ---------- featured live video on the home page (newest video added in admin, else config.js) ----------
 const featured = document.getElementById('featuredVideo')
 if (featured) {
-  if (config.videos.length > 0) {
-    featured.innerHTML = ''
-    featured.appendChild(videoCard(config.videos[0]))
-  }
+  getVideos().then((list) => {
+    if (list.length > 0) {
+      featured.innerHTML = ''
+      featured.appendChild(videoCard(list[0]))
+    }
+  })
 }
+
+// ---------- texts edited from the admin page ----------
+getTexts().then((t) => {
+  for (const f of TEXT_FIELDS) {
+    const v = t[f.key]
+    if (typeof v === 'string' && v.trim()) document.querySelectorAll('[data-text="' + f.key + '"]').forEach((el) => { el.textContent = v })
+  }
+})
 
 // ---------- lightbox for gallery photos ----------
 const lb = document.getElementById('lightbox')

@@ -223,3 +223,49 @@ a.member:hover .member-photo img { transform: scale(1.05); filter: none; }
 .photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 250px; gap: 14px; }
 .photo-grid > div { min-height: 0; }
 @media (max-width: 720px) { .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 200px; } }
+
+/* member cards are buttons now */
+button.member { text-align: left; width: 100%; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+button.member:hover .member-photo img, button.member:focus-visible .member-photo img { transform: scale(1.05); filter: none; }
+button.member:hover { border-color: color-mix(in srgb, var(--color-accent) 55%, transparent); transform: translateY(-4px); }
+.member-in { animation: memberIn .7s cubic-bezier(.22,.8,.24,1) both; }
+@keyframes memberIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+/* member popup: photo on the left, text on the right */
+.mm { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 1.2rem; }
+.mm-backdrop { position: absolute; inset: 0; background: rgba(8, 8, 10, .82); backdrop-filter: blur(6px); }
+.mm-box { position: relative; width: min(980px, 100%); max-height: calc(100svh - 2.4rem); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 2.2rem; align-items: center; }
+.mm-photo { aspect-ratio: 4 / 5; max-height: calc(100svh - 3rem); overflow: hidden; background: #151518; justify-self: center; width: 100%; }
+.mm-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mm-flyer { z-index: 3; object-fit: cover; pointer-events: none; will-change: left, top, width, height; }
+.mm-text { padding: .5rem .5rem .5rem 0; overflow-y: auto; max-height: calc(100svh - 3rem); }
+.mm-name { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1; color: #fff; margin: .6rem 0 1.2rem; font-weight: 500; }
+.mm-bio { color: #d6d3d1; font-weight: 300; font-size: 1.1rem; line-height: 1.7; }
+.mm-portfolio { position: relative; margin-top: 2rem; padding: 1.2rem 1.3rem; border: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.mm-portfolio::before, .mm-portfolio::after { content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--color-accent); }
+.mm-portfolio::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.mm-portfolio::after { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+.mm-pl { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: #a8a29e; }
+.mm-soon { font-size: .85rem; color: #78716c; }
+.mm-close { position: absolute; top: -.4rem; right: -.2rem; z-index: 4; width: 42px; height: 42px; background: none; border: 0; color: #fff; font-size: 2rem; line-height: 1; cursor: pointer; }
+@media (max-width: 760px) {
+  .mm { align-items: start; overflow-y: auto; }
+  .mm-box { grid-template-columns: 1fr; gap: 1.2rem; padding-top: 2.4rem; max-height: none; }
+  .mm-photo { max-width: 340px; aspect-ratio: 1 / 1; }
+  .mm-text { max-height: none; padding: 0 .2rem 1.5rem; }
+  .mm-close { top: 0; right: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .member-in { animation: none; } }
+
+/* admin: videos, members, texts */
+.video-admin { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; }
+.video-admin-card { display: flex; flex-direction: column; gap: .6rem; }
+.video-admin-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.member-admin { display: grid; gap: 1rem; }
+.member-admin-card { display: grid; grid-template-columns: 150px 1fr; gap: 1rem; padding: 1rem; border: 1px solid var(--line); }
+.member-admin-card img { width: 150px; aspect-ratio: 4 / 5; object-fit: cover; background: #151518; }
+.member-admin-card textarea, .text-admin-row textarea { resize: vertical; width: 100%; }
+.text-admin { display: grid; gap: 1.4rem; max-width: 760px; }
+.text-admin-row { display: flex; flex-direction: column; gap: .5rem; }
+.text-admin-row input { width: 100%; }
+@media (max-width: 600px) { .member-admin-card { grid-template-columns: 1fr; } }
