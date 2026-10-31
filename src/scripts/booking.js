@@ -8,6 +8,21 @@ const waBtn = document.getElementById('sendWhatsapp')
 const note = document.getElementById('formNote')
 const gmailBtn = document.getElementById('sendGmail')
 
+// Also keep a copy of each request for the band's customer notes (admin page). Never blocks sending.
+async function saveRequest(via) {
+  try {
+    const d = new FormData(form)
+    const [{ auth, db }, a, f] = await Promise.all([import('./firebase.js'), import('firebase/auth'), import('firebase/firestore')])
+    if (!auth.currentUser) await a.signInAnonymously(auth)
+    const cut = (v, n) => String(v || '').trim().slice(0, n)
+    await f.addDoc(f.collection(db, 'requests'), {
+      name: cut(d.get('name'), 80), contact: cut(d.get('contact'), 120), type: cut(d.get('type'), 40),
+      date: cut(d.get('date'), 20), place: cut(d.get('place'), 200), message: cut(d.get('message'), 2000),
+      via, createdAt: f.serverTimestamp(),
+    })
+  } catch { /* the message still goes out by mail / WhatsApp */ }
+}
+
 function buildMessage() {
   const d = new FormData(form)
   const lines = [
@@ -29,6 +44,7 @@ function buildMessage() {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
+  saveRequest('email')
   const subject = 'Booking enquiry for Dynamites Band'
   const body = buildMessage()
   window.location.href = `mailto:${config.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
@@ -38,6 +54,7 @@ form.addEventListener('submit', (e) => {
 if (links.whatsapp) {
   waBtn.addEventListener('click', () => {
     if (!form.reportValidity()) return
+    saveRequest('whatsapp')
     const number = String(config.whatsapp).replace(/\D/g, '')
     window.open(`https://wa.me/${number}?text=${encodeURIComponent(buildMessage())}`, '_blank', 'noopener')
   })
@@ -50,6 +67,7 @@ if (links.whatsapp) {
 // Gmail on the web: for visitors who use Gmail but have no email app set up.
 gmailBtn.addEventListener('click', () => {
   if (!form.reportValidity()) return
+  saveRequest('gmail')
   const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(config.email)}&su=${encodeURIComponent('Booking enquiry for Dynamites Band')}&body=${encodeURIComponent(buildMessage())}`
   window.open(url, '_blank', 'noopener')
   note.textContent = 'Gmail opened in a new tab with your message ready. Press Send there.'

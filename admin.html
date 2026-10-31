@@ -25,6 +25,7 @@
     <div id="app" hidden>
     <nav class="admin-tabs" aria-label="Admin sections">
       <button class="admin-tab active" data-tab="inbox" type="button">Inbox</button>
+      <button class="admin-tab" data-tab="customers" type="button">Customers</button>
       <button class="admin-tab" data-tab="photos" type="button">Photos</button>
       <button class="admin-tab" data-tab="videos" type="button">Videos</button>
       <button class="admin-tab" data-tab="members" type="button">Members</button>
@@ -42,6 +43,23 @@
         </form>
       </section>
     </div>
+
+    <section id="tab-customers" class="card p-6" hidden>
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-1">
+        <h2 class="font-display text-2xl text-white">Customer notes</h2>
+        <div class="flex gap-2 flex-wrap">
+          <button id="crmCsv" class="btn btn-ghost btn-small" type="button">Download CSV</button>
+          <button id="crmCopyAll" class="btn btn-ghost btn-small" type="button">Copy all as note</button>
+        </div>
+      </div>
+      <p class="text-stone-500 text-sm mb-4">Every booking request and chat is grouped by customer, newest first, with the time it was sent. Add your own note and status for each person.</p>
+      <div class="flex flex-wrap gap-3 mb-4">
+        <input id="crmSearch" class="admin-input grow" placeholder="Search name, phone, email, place...">
+        <select id="crmFilter" class="admin-input"><option value="">All statuses</option><option value="new">New</option><option value="contacted">Contacted</option><option value="quoted">Quoted</option><option value="booked">Booked</option><option value="done">Done</option><option value="lost">Not going ahead</option></select>
+      </div>
+      <p id="crmMsg" class="text-sm text-accent mb-3" aria-live="polite"></p>
+      <div id="crmList" class="crm-list"></div>
+    </section>
 
     <section id="tab-photos" class="card p-6" hidden>
       <h2 class="font-display text-2xl text-white mb-1">Gallery photos</h2>
@@ -97,5 +115,6 @@
   </main>
   <script type="module" src="/src/scripts/admin.js"></script>
   <script type="module" src="/src/scripts/admin-content.js"></script>
+  <script type="module" src="/src/scripts/admin-crm.js"></script>
 </body>
 </html>
