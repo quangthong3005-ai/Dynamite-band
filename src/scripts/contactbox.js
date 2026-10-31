@@ -5,7 +5,7 @@ import { firebaseConfig } from './firebase-config.js'
 // With Firebase set up the message goes straight to the band's inbox (admin.html).
 // Without it, the box falls back to the visitor's own email app.
 const hasFirebase = !!firebaseConfig.apiKey
-const subject = 'Message for Dynamite Band'
+const subject = 'Message for Dynamites Band'
 
 const dlg = document.createElement('dialog')
 dlg.id = 'contactBox'

@@ -43,13 +43,13 @@ if ('IntersectionObserver' in window) {
 
 // ---------- contact links (Zalo, WhatsApp, email) from config.js ----------
 const digits = (s) => String(s || '').replace(/\D/g, '')
-const subject = 'Booking enquiry for Dynamite Band'
+const subject = 'Booking enquiry for Dynamites Band'
 
 export const links = {
   email: config.email ? `mailto:${config.email}?subject=${encodeURIComponent(subject)}` : '',
   zalo: digits(config.zalo) ? `https://zalo.me/${digits(config.zalo)}` : '',
   whatsapp: digits(config.whatsapp)
-    ? `https://wa.me/${digits(config.whatsapp)}?text=${encodeURIComponent('Hi Dynamite Band, I would like to book you for an event.')}`
+    ? `https://wa.me/${digits(config.whatsapp)}?text=${encodeURIComponent('Hi Dynamites Band, I would like to book you for an event.')}`
     : '',
 }
 

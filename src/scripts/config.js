@@ -18,7 +18,7 @@ export const config = {
   // Add one line per video:  { id: 'YouTubeVideoID', title: 'Song or event name' },
   // (the ID is the part after v= in a YouTube link)
   videos: [
-    { id: '_fxI3WCxgPg', title: 'Dynamite Band live' },
+    { id: '_fxI3WCxgPg', title: 'Dynamites Band live' },
     // { id: 'XXXXXXXXXXX', title: 'Next video title' },
   ],
 }

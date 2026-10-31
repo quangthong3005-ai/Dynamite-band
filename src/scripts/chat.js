@@ -8,8 +8,8 @@ if (firebaseConfig.apiKey) {
     <button id="chatBubble" class="chat-bubble" type="button" aria-label="Chat with the band" aria-expanded="false">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
     </button>
-    <section id="chatPanel" class="chat-panel" hidden aria-label="Chat with Dynamite Band">
-      <header class="chat-head"><div><strong>Dynamite Band</strong><span>We usually reply within a day</span></div>
+    <section id="chatPanel" class="chat-panel" hidden aria-label="Chat with Dynamites Band">
+      <header class="chat-head"><div><strong>Dynamites Band</strong><span>We usually reply within a day</span></div>
         <button id="chatClose" type="button" aria-label="Close chat">&times;</button></header>
       <form id="chatName" class="chat-name">
         <p>Hi! What should we call you?</p>

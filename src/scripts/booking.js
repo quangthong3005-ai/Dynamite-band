@@ -11,7 +11,7 @@ const gmailBtn = document.getElementById('sendGmail')
 function buildMessage() {
   const d = new FormData(form)
   const lines = [
-    'Hello Dynamite Band,',
+    'Hello Dynamites Band,',
     '',
     'I would like to book you for an event.',
     '',
@@ -29,7 +29,7 @@ function buildMessage() {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-  const subject = 'Booking enquiry for Dynamite Band'
+  const subject = 'Booking enquiry for Dynamites Band'
   const body = buildMessage()
   window.location.href = `mailto:${config.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   note.textContent = 'Your email app should open with the message ready. If it does not, copy the details and email us directly.'
@@ -50,7 +50,7 @@ if (links.whatsapp) {
 // Gmail on the web: for visitors who use Gmail but have no email app set up.
 gmailBtn.addEventListener('click', () => {
   if (!form.reportValidity()) return
-  const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(config.email)}&su=${encodeURIComponent('Booking enquiry for Dynamite Band')}&body=${encodeURIComponent(buildMessage())}`
+  const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(config.email)}&su=${encodeURIComponent('Booking enquiry for Dynamites Band')}&body=${encodeURIComponent(buildMessage())}`
   window.open(url, '_blank', 'noopener')
   note.textContent = 'Gmail opened in a new tab with your message ready. Press Send there.'
 })

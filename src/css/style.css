@@ -177,3 +177,37 @@ a.member:hover .member-photo img { transform: scale(1.05); filter: none; }
   .g-poster, .g-merch { grid-column: auto; grid-row: auto; }
   .g-crowd { grid-column: 1 / span 2; grid-row: auto; }
 }
+
+/* ---------- section backdrops: black, white light and orange ---------- */
+.marquee { background: var(--color-accent); border-block: 0; }
+.marquee-track span { color: #18181c; }
+.marquee-track span.dot { color: #fff; }
+
+#about { position: relative; overflow: hidden;
+  background: radial-gradient(ellipse 60% 75% at 88% 8%, rgba(255, 90, 31, .18), transparent 62%),
+              linear-gradient(180deg, #18181c, #1d1d22); }
+#members { position: relative;
+  background: linear-gradient(135deg, #25252b 0%, #1b1b20 55%, #261e1b 100%); }
+#music { position: relative; overflow: hidden;
+  background: radial-gradient(ellipse 55% 65% at 8% 100%, rgba(255, 90, 31, .16), transparent 65%),
+              radial-gradient(ellipse 50% 50% at 96% 0%, rgba(255, 255, 255, .07), transparent 60%), #18181c; }
+#gallery { background: linear-gradient(200deg, #2a2a31 0%, #1b1b20 58%, #211b18 100%); }
+
+/* booking: the orange billboard moment */
+#booking { position: relative; overflow: hidden; border-color: transparent;
+  background: linear-gradient(135deg, #ff6c2d 0%, #ff5a1f 45%, #e24a12 100%); }
+#booking .eyebrow { color: #18181c; }
+#booking h2 { color: #18181c; }
+#booking h2 .italic { color: #fff; }
+#booking p { color: rgba(24, 24, 28, .82); }
+#booking .btn-solid { background: #18181c; border-color: #18181c; color: #fff; }
+#booking .btn-solid:hover { background: transparent; color: #18181c; }
+
+.contact-glow { background: radial-gradient(ellipse at 50% 125%, color-mix(in srgb, var(--color-accent) 32%, transparent), transparent 62%),
+                            radial-gradient(ellipse 55% 50% at 0% 0%, rgba(255, 255, 255, .07), transparent 60%), #18181c; }
+
+/* logo watermark */
+.wm { position: absolute; pointer-events: none; user-select: none; z-index: 0; width: min(72vw, 760px); height: auto; }
+.wm-about { right: -9%; top: 50%; transform: translateY(-50%); opacity: .07; }
+.wm-booking { left: -8%; bottom: -26%; filter: brightness(0); opacity: .1; }
+#about > div, #booking > div { position: relative; z-index: 1; }

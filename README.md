@@ -1,4 +1,4 @@
-# Dynamite Band website
+# Dynamites Band website
 
 Static one-page site built with Vite and Tailwind CSS.
 
