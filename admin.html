@@ -25,6 +25,7 @@
     <div id="app" hidden>
     <nav class="admin-tabs" aria-label="Admin sections">
       <button class="admin-tab active" data-tab="inbox" type="button">Inbox</button>
+      <button class="admin-tab" data-tab="schedule" type="button">Schedule</button>
       <button class="admin-tab" data-tab="customers" type="button">Customers</button>
       <button class="admin-tab" data-tab="photos" type="button">Photos</button>
       <button class="admin-tab" data-tab="videos" type="button">Videos</button>
@@ -43,6 +44,37 @@
         </form>
       </section>
     </div>
+
+    <section id="tab-schedule" class="card p-6" hidden>
+      <h2 class="font-display text-2xl text-white mb-1">Show calendar</h2>
+      <p class="text-stone-500 text-sm mb-4">Click a day to add a show, or click a show to edit it. The next 7 days appear on the home page, updated live.</p>
+      <div class="cal-bar">
+        <button id="calPrev" class="btn btn-ghost btn-small" type="button" aria-label="Previous month">&larr;</button>
+        <h3 id="calTitle" class="cal-title"></h3>
+        <button id="calNext" class="btn btn-ghost btn-small" type="button" aria-label="Next month">&rarr;</button>
+        <button id="calToday" class="btn btn-ghost btn-small" type="button">Today</button>
+        <span id="calLive" class="sch-live"><i></i>Live</span>
+      </div>
+      <div id="calGrid" class="cal-grid"></div>
+      <form id="calForm" class="cal-form" hidden>
+        <label class="full">Title<input id="shTitle" class="admin-input" required maxlength="100" placeholder="e.g. Wedding at Riverside, Friday night at Bar X"></label>
+        <label>Date<input id="shDate" class="admin-input" type="date" required></label>
+        <label>City<input id="shCity" class="admin-input" maxlength="60"></label>
+        <label>Start time<input id="shStart" class="admin-input" type="time"></label>
+        <label>End time<input id="shEnd" class="admin-input" type="time"></label>
+        <label class="full">Venue<input id="shVenue" class="admin-input" maxlength="120"></label>
+        <label class="full">Note (shown on the website)<input id="shNote" class="admin-input" maxlength="140" placeholder="e.g. Free entry, tickets at the door"></label>
+        <label class="full">Link (tickets or event page, optional)<input id="shLink" class="admin-input" type="url" maxlength="300" placeholder="https://"></label>
+        <div class="full flex gap-2 flex-wrap items-center">
+          <button class="btn btn-solid btn-small" type="submit" id="shSave">Save show</button>
+          <button class="btn btn-ghost btn-small" type="button" id="shDelete" hidden>Delete</button>
+          <button class="btn btn-ghost btn-small" type="button" id="shCancel">Close</button>
+          <span id="shMsg" class="text-sm text-accent" aria-live="polite"></span>
+        </div>
+      </form>
+      <h3 class="font-display text-xl text-white mt-6">Upcoming shows</h3>
+      <div id="calUpcoming" class="cal-upcoming"></div>
+    </section>
 
     <section id="tab-customers" class="card p-6" hidden>
       <div class="flex flex-wrap items-end justify-between gap-3 mb-1">
@@ -116,5 +148,6 @@
   <script type="module" src="/src/scripts/admin.js"></script>
   <script type="module" src="/src/scripts/admin-content.js"></script>
   <script type="module" src="/src/scripts/admin-crm.js"></script>
+  <script type="module" src="/src/scripts/admin-schedule.js"></script>
 </body>
 </html>

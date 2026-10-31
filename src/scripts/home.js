@@ -2,6 +2,7 @@ import { videoCard } from './common.js'
 import { getVideos, getTexts } from './content.js'
 import { TEXT_FIELDS } from './site-text.js'
 import './members.js'
+import './schedule.js'
 
 // ---------- featured live video on the home page (newest video added in admin, else config.js) ----------
 const featured = document.getElementById('featuredVideo')
