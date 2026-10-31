@@ -69,7 +69,7 @@ if (weekEl) {
       const [{ db }, f] = await Promise.all([import('./firebase.js'), import('firebase/firestore')])
       const q = f.query(f.collection(db, 'shows'), f.where('date', '>=', from), f.where('date', '<=', key(addDays(now, 90))))
       unsub = f.onSnapshot(q, (snap) => {
-        shows = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+        shows = snap.docs.map((d) => ({ id: d.id, ...d.data() })).filter((s) => s.scope !== 'qt')
         liveEl.classList.add('on')
         render()
       }, () => { liveEl.classList.remove('on') })

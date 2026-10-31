@@ -63,6 +63,9 @@
         <label>Start time<input id="shStart" class="admin-input" type="time"></label>
         <label>End time<input id="shEnd" class="admin-input" type="time"></label>
         <label class="full">Venue<input id="shVenue" class="admin-input" maxlength="120"></label>
+        <label>Show on<select id="shScope" class="admin-input"><option value="band">Band site</option><option value="qt">My portfolio</option><option value="both">Both</option></select></label>
+        <label>Type<select id="shKind" class="admin-input"><option value="band">Band show</option><option value="collab">Collab</option><option value="solo">Solo</option><option value="session">Session</option></select></label>
+        <label class="full">Band / collab with (shown as the headline on the portfolio)<input id="shWith" class="admin-input" maxlength="80" list="shWithList" placeholder="e.g. Dynamites Band, Band B, a singer name"><datalist id="shWithList"><option value="Dynamites Band"></datalist></label>
         <label class="full">Note (shown on the website)<input id="shNote" class="admin-input" maxlength="140" placeholder="e.g. Free entry, tickets at the door"></label>
         <label class="full">Link (tickets or event page, optional)<input id="shLink" class="admin-input" type="url" maxlength="300" placeholder="https://"></label>
         <div class="full flex gap-2 flex-wrap items-center">

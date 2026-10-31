@@ -65,7 +65,7 @@ function draw() {
     cell.append(num)
     const list = shows.filter((s) => s.date === k).sort((a, b) => (a.start || '').localeCompare(b.start || ''))
     list.slice(0, 3).forEach((s) => {
-      const c = el('button', 'cal-chip', (s.start ? s.start + ' ' : '') + s.title); c.type = 'button'; c.title = s.title
+      const c = el('button', 'cal-chip ' + (s.scope || 'band'), (s.start ? s.start + ' ' : '') + s.title); c.type = 'button'; c.title = s.title
       c.addEventListener('click', (ev) => { ev.stopPropagation(); openForm(s) })
       cell.append(c)
     })
@@ -83,6 +83,7 @@ function openForm(s) {
   $('shTitle').value = s.title || ''; $('shDate').value = s.date || ''; $('shCity').value = s.city || ''
   $('shStart').value = s.start || ''; $('shEnd').value = s.end || ''; $('shVenue').value = s.venue || ''
   $('shNote').value = s.note || ''; $('shLink').value = s.link || ''
+  $('shScope').value = s.scope || 'band'; $('shKind').value = s.kind || 'band'; $('shWith').value = s.with || ''
   $('shDelete').hidden = !editingId
   $('shSave').textContent = editingId ? 'Save changes' : 'Add show'
   $('calForm').hidden = false
@@ -98,6 +99,7 @@ $('calForm').addEventListener('submit', async (e) => {
   const data = {
     title: $('shTitle').value.trim(), date: $('shDate').value, city: $('shCity').value.trim(), start: $('shStart').value,
     end: $('shEnd').value, venue: $('shVenue').value.trim(), note: $('shNote').value.trim(), link: $('shLink').value.trim(),
+    scope: $('shScope').value, kind: $('shKind').value, with: $('shWith').value.trim(),
   }
   try {
     if (editingId) await setDoc(doc(db, 'shows', editingId), data, { merge: true })
