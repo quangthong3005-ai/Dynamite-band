@@ -83,3 +83,34 @@ a.card:hover, .card.hoverable:hover { border-color: color-mix(in srgb, var(--col
 #site-header.scrolled { background: rgba(10, 10, 11, .82); backdrop-filter: blur(12px); border-color: var(--line); }
 
 .contact-glow { background: radial-gradient(ellipse at 50% 120%, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 60%), #0a0a0b; }
+
+/* members */
+.member { display: block; position: relative; overflow: hidden; }
+.member-photo { aspect-ratio: 4 / 5; overflow: hidden; background: #151518; }
+.member-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.35) contrast(1.05); transition: transform .8s ease, filter .5s ease; }
+a.member:hover .member-photo img { transform: scale(1.05); filter: none; }
+.member-body { padding: 1.25rem 1.4rem 1.5rem; }
+.member-link { display: inline-block; margin-top: .9rem; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-accent); }
+.member-link.muted { color: #57534e; }
+
+/* video cards */
+.video-card { overflow: hidden; }
+.video-thumb { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border: 0; padding: 0; cursor: pointer; overflow: hidden; }
+.video-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: .85; transition: transform .6s ease, opacity .3s ease; }
+.video-thumb:hover img { transform: scale(1.04); opacity: 1; }
+.video-card iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+.play-circle { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 9999px; background: rgba(10, 10, 11, .7); border: 1px solid rgba(255, 255, 255, .3); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+.video-caption { padding: 1rem 1.2rem; font-family: var(--font-display); font-size: 1.3rem; color: #fff; }
+
+/* disabled contact buttons */
+.is-disabled { opacity: .45; cursor: not-allowed; pointer-events: none; }
+
+/* page header for sub pages */
+.page-hero { padding: 9rem 1.25rem 4rem; background: radial-gradient(ellipse at 50% -20%, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 60%), #0a0a0b; text-align: center; }
+
+/* form */
+.field { display: flex; flex-direction: column; gap: .45rem; text-align: left; }
+.field label { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: #a8a29e; }
+.field input, .field select, .field textarea { background: #0f0f11; border: 1px solid var(--line); color: #fff; padding: .85rem 1rem; font: inherit; font-size: 1rem; border-radius: 0; width: 100%; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; border-color: transparent; }
+.step-num { font-family: var(--font-display); font-size: 3.5rem; line-height: 1; color: var(--color-accent); }
