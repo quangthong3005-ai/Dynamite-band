@@ -2,6 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-# Change this to your real domain once you have one, for example:
-# Sitemap: https://dynamiteband.com/sitemap.xml
-Sitemap: https://quangthong3005-ai.github.io/dynamiteband/sitemap.xml
+# Replace with your custom domain when you get one.
+Sitemap: https://quangthong3005-ai.github.io/Dynamite-band/sitemap.xml
