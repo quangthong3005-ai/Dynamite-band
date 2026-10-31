@@ -48,6 +48,24 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // Quang Thong portfolio: personal gallery photos and videos (managed on the portfolio admin page).
+    match /qtphotos/{photoId} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && request.resource.data.src is string && request.resource.data.src.size() < 950000
+        && request.resource.data.caption is string && request.resource.data.caption.size() <= 80;
+      allow update: if isAdmin()
+        && request.resource.data.caption is string && request.resource.data.caption.size() <= 80;
+      allow delete: if isAdmin();
+    }
+    match /qtvideos/{videoId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.ytId is string && request.resource.data.ytId.size() <= 20
+        && (!('title' in request.resource.data) || (request.resource.data.title is string && request.resource.data.title.size() <= 100));
+      allow delete: if isAdmin();
+    }
+
     // Extra editors (email = document id). Only the owner manages this list.
     match /editors/{email} {
       allow read: if request.auth != null && (isOwner() || request.auth.token.email == email);
@@ -91,7 +109,8 @@ service cloud.firestore {
         && request.resource.data.date.size() <= 20
         && request.resource.data.place.size() <= 200
         && request.resource.data.message.size() <= 2000
-        && request.resource.data.via in ['email', 'gmail', 'whatsapp']
+        && request.resource.data.via in ['email', 'gmail', 'whatsapp', 'form']
+        && (!('site' in request.resource.data) || request.resource.data.site in ['band', 'portfolio'])
         && request.resource.data.createdAt == request.time;
       allow read, update, delete: if isAdmin();
     }
