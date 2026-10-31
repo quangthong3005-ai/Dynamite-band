@@ -5,7 +5,7 @@ const $ = (id) => document.getElementById(id)
 const off = []
 let requests = [], chats = [], notes = {}
 const STATUS = { new: 'New', contacted: 'Contacted', quoted: 'Quoted', booked: 'Booked', done: 'Done', lost: 'Not going ahead' }
-const TYPE_LABEL = { email: 'Email app', gmail: 'Gmail', whatsapp: 'WhatsApp' }
+const TYPE_LABEL = { email: 'Email app', gmail: 'Gmail', whatsapp: 'WhatsApp', form: 'Contact form' }
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e }
 function ms(t) { return t && t.toMillis ? t.toMillis() : 0 }
@@ -110,7 +110,7 @@ function draw() {
       const row = el('div', 'crm-item ' + it.kind)
       if (it.kind === 'req') {
         const r = it.r
-        row.append(el('div', 'crm-time', fmt(r.createdAt) + ' · Booking request via ' + (TYPE_LABEL[r.via] || r.via)))
+        row.append(el('div', 'crm-time', fmt(r.createdAt) + ' · ' + (r.site === 'portfolio' ? 'Portfolio message' : 'Request') + ' via ' + (TYPE_LABEL[r.via] || r.via)))
         const t = el('dl', 'crm-dl')
         const add = (k, v) => { if (v) { t.append(el('dt', '', k), el('dd', '', v)) } }
         add('Event', r.type); add('Date', r.date); add('Place', r.place); add('Contact', r.contact); add('Details', r.message)

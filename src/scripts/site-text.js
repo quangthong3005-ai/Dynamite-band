@@ -9,6 +9,4 @@ export const TEXT_FIELDS = [
     default: 'Tell us about your event and we will shape the set to fit it.' },
   { key: 'membersHint', label: 'Members: small hint under the title', multi: false,
     default: 'Tap a member to learn more about them.' },
-  { key: 'bookingBlurb', label: 'Booking block on the home page', multi: true,
-    default: 'Weddings, parties, festivals, corporate nights. See how booking works and send your request.' },
 ]
