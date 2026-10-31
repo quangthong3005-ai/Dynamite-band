@@ -6,6 +6,7 @@ import { config } from './config.js'
 const form = document.getElementById('bookingForm')
 const waBtn = document.getElementById('sendWhatsapp')
 const note = document.getElementById('formNote')
+const gmailBtn = document.getElementById('sendGmail')
 
 function buildMessage() {
   const d = new FormData(form)
@@ -45,3 +46,11 @@ if (links.whatsapp) {
   waBtn.setAttribute('aria-disabled', 'true')
   waBtn.setAttribute('title', 'Coming soon')
 }
+
+// Gmail on the web: for visitors who use Gmail but have no email app set up.
+gmailBtn.addEventListener('click', () => {
+  if (!form.reportValidity()) return
+  const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(config.email)}&su=${encodeURIComponent('Booking enquiry for Dynamite Band')}&body=${encodeURIComponent(buildMessage())}`
+  window.open(url, '_blank', 'noopener')
+  note.textContent = 'Gmail opened in a new tab with your message ready. Press Send there.'
+})

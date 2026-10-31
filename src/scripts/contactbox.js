@@ -23,8 +23,12 @@ dlg.innerHTML = `
     </div>
     <div class="flex flex-wrap items-center gap-4 mt-6">
       <button class="btn btn-solid" type="submit" id="cbSend">Send message</button>
-      <a class="text-sm text-stone-400 underline" id="cbMail" target="_blank" rel="noopener">Use my email app instead</a>
     </div>
+    <p class="mt-5 text-sm text-stone-400">Or send it yourself:
+      <a class="text-accent underline ml-1" id="cbGmail" target="_blank" rel="noopener">Open in Gmail</a>
+      <span class="mx-1">&middot;</span>
+      <a class="text-accent underline" id="cbMail">Use my email app</a>
+    </p>
     <p id="cbNote" class="mt-4 text-sm text-accent" aria-live="polite"></p>
   </form>`
 document.body.appendChild(dlg)
@@ -63,7 +67,11 @@ document.querySelectorAll('[data-contact-text="email"]').forEach((el) => {
 $('cbClose').addEventListener('click', () => dlg.close())
 dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close() })
 
+function gmailHref(d) {
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(config.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText(d))}`
+}
 $('cbMail').addEventListener('click', () => { $('cbMail').href = mailtoHref(data()) })
+$('cbGmail').addEventListener('click', () => { $('cbGmail').href = gmailHref(data()) })
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
