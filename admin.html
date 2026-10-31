@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Band inbox | Dynamites Band</title>
+  <title>Band admin | Dynamites Band</title>
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 </head>
 <body>
   <header class="border-b border-white/10 px-5 py-4 flex items-center justify-between">
-    <a href="index.html" class="logo-link flex items-center gap-3" aria-label="Dynamites Band home"><img class="logo-img" src="/images/logo-wordmark.png" alt="Dynamites Band"><span class="text-stone-500 text-base">inbox</span></a>
+    <a href="index.html" class="logo-link flex items-center gap-3" aria-label="Dynamites Band home"><img class="logo-img" src="/images/logo-wordmark.png" alt="Dynamites Band"><span class="text-stone-500 text-base">admin</span></a>
     <button id="signOut" class="btn btn-ghost btn-small" type="button" hidden>Sign out</button>
   </header>
   <main class="px-5 py-8 max-w-6xl mx-auto">
@@ -22,7 +22,13 @@
       <button id="signIn" class="btn btn-solid" type="button">Sign in with Google</button>
       <p id="loginMsg" class="mt-4 text-sm text-accent" aria-live="polite"></p>
     </div>
-    <div id="app" class="admin-grid" hidden>
+    <div id="app" hidden>
+    <nav class="admin-tabs" aria-label="Admin sections">
+      <button class="admin-tab active" data-tab="inbox" type="button">Inbox</button>
+      <button class="admin-tab" data-tab="photos" type="button">Photos</button>
+      <button class="admin-tab" data-tab="team" type="button" id="teamTab" hidden>Editors</button>
+    </nav>
+    <div id="tab-inbox" class="admin-grid">
       <aside id="chatsList" class="card admin-list"></aside>
       <section class="card admin-room">
         <h1 id="chatTitle" class="font-display text-2xl text-white p-4 border-b border-white/10">Select a conversation</h1>
@@ -32,6 +38,29 @@
           <button class="btn btn-solid btn-small" type="submit">Send</button>
         </form>
       </section>
+    </div>
+
+    <section id="tab-photos" class="card p-6" hidden>
+      <h2 class="font-display text-2xl text-white mb-1">Gallery photos</h2>
+      <p class="text-stone-500 text-sm mb-5">Pick one or more photos. They are resized automatically and show up on the home page right away.</p>
+      <form id="photoForm" class="flex flex-wrap gap-3 items-center mb-6">
+        <input id="photoFile" type="file" accept="image/*" multiple required class="text-stone-300 text-sm">
+        <input id="photoCaption" maxlength="80" placeholder="Caption (optional)" class="admin-input">
+        <button class="btn btn-solid btn-small" type="submit" id="photoBtn">Upload</button>
+      </form>
+      <p id="photoMsg" class="text-sm text-accent mb-4" aria-live="polite"></p>
+      <div id="photoList" class="photo-admin"></div>
+    </section>
+
+    <section id="tab-team" class="card p-6" hidden>
+      <h2 class="font-display text-2xl text-white mb-1">Who can edit</h2>
+      <p class="text-stone-500 text-sm mb-5">Add a Gmail address and that person can sign in here with Google to reply to chats and manage photos. Remove it any time to take access back.</p>
+      <form id="editorForm" class="flex flex-wrap gap-3 items-center mb-5">
+        <input id="editorEmail" type="email" required placeholder="name@gmail.com" class="admin-input">
+        <button class="btn btn-solid btn-small" type="submit">Add editor</button>
+      </form>
+      <ul id="editorList" class="text-stone-300 text-sm"></ul>
+    </section>
     </div>
   </main>
   <script type="module" src="/src/scripts/admin.js"></script>

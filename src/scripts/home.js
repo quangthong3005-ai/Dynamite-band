@@ -13,7 +13,8 @@ if (featured) {
 // ---------- lightbox for gallery photos ----------
 const lb = document.getElementById('lightbox')
 const lbImg = document.getElementById('lbImg')
-const thumbs = Array.from(document.querySelectorAll('.g-item'))
+const thumbs = []
+const addThumbs = () => { thumbs.length = 0; thumbs.push(...document.querySelectorAll('.g-item')); thumbs.forEach((t, i) => { t.onclick = () => openLb(i) }) }
 let current = 0
 let lastFocus = null
 
@@ -34,7 +35,7 @@ function closeLb() {
   document.body.style.overflow = ''
   if (lastFocus) lastFocus.focus()
 }
-thumbs.forEach((t, i) => t.addEventListener('click', () => openLb(i)))
+addThumbs()
 document.getElementById('lbClose').addEventListener('click', closeLb)
 document.getElementById('lbPrev').addEventListener('click', () => show(current - 1))
 document.getElementById('lbNext').addEventListener('click', () => show(current + 1))
@@ -45,3 +46,23 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') show(current - 1)
   if (e.key === 'ArrowRight') show(current + 1)
 })
+
+// ---------- extra photos added by the band from the admin page ----------
+const more = document.getElementById('morePhotos')
+if (more) {
+  import('./firebase.js').then(async ({ db }) => {
+    const { collection, getDocs, query, orderBy } = await import('firebase/firestore')
+    const snap = await getDocs(query(collection(db, 'photos'), orderBy('createdAt', 'desc')))
+    if (snap.empty) return
+    snap.forEach((d) => {
+      const p = d.data()
+      const b = document.createElement('button')
+      b.type = 'button'; b.className = 'g-item'; b.dataset.caption = p.caption || ''; b.dataset.full = p.src; b.dataset.alt = p.caption || 'Band photo'
+      const img = document.createElement('img'); img.src = p.src; img.alt = p.caption || 'Band photo'; img.loading = 'lazy'
+      b.appendChild(img)
+      const w = document.createElement('div'); w.appendChild(b); more.appendChild(w)
+    })
+    more.hidden = false
+    addThumbs()
+  }).catch(() => {})
+}
