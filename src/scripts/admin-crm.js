@@ -5,7 +5,7 @@ const $ = (id) => document.getElementById(id)
 const off = []
 let requests = [], chats = [], notes = {}
 const STATUS = { new: 'New', contacted: 'Contacted', quoted: 'Quoted', booked: 'Booked', done: 'Done', lost: 'Not going ahead' }
-const TYPE_LABEL = { email: 'Email app', gmail: 'Gmail', whatsapp: 'WhatsApp', form: 'Contact form' }
+const TYPE_LABEL = { email: 'Email app', gmail: 'Gmail', whatsapp: 'WhatsApp', form: 'Contact form', zalo: 'Zalo' }
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e }
 function ms(t) { return t && t.toMillis ? t.toMillis() : 0 }

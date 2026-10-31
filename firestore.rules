@@ -66,6 +66,50 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // Developer page content: projects, skills and experience (managed on the portfolio admin page).
+    match /devprojects/{id} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.title is string && request.resource.data.title.size() > 0 && request.resource.data.title.size() <= 100
+        && request.resource.data.get('desc', '').size() <= 400
+        && request.resource.data.get('tech', '').size() <= 120
+        && request.resource.data.get('link', '').size() <= 300
+        && request.resource.data.get('linkLabel', '').size() <= 40
+        && request.resource.data.get('image', '').size() < 950000
+        && request.resource.data.order is number;
+      allow delete: if isAdmin();
+    }
+    match /devskills/{id} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 40
+        && request.resource.data.order is number;
+      allow delete: if isAdmin();
+    }
+    match /devexp/{id} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.title is string && request.resource.data.title.size() > 0 && request.resource.data.title.size() <= 100
+        && request.resource.data.get('period', '').size() <= 40
+        && request.resource.data.get('text', '').size() <= 400
+        && request.resource.data.order is number;
+      allow delete: if isAdmin();
+    }
+
+    // Audio plugin products (managed on the portfolio admin page).
+    match /plugins/{id} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 60
+        && request.resource.data.get('tag', '').size() <= 30
+        && request.resource.data.get('desc', '').size() <= 500
+        && request.resource.data.get('link', '').size() <= 300
+        && request.resource.data.get('linkLabel', '').size() <= 40
+        && request.resource.data.get('image', '').size() < 950000
+        && request.resource.data.order is number;
+      allow delete: if isAdmin();
+    }
+
     // Extra editors (email = document id). Only the owner manages this list.
     match /editors/{email} {
       allow read: if request.auth != null && (isOwner() || request.auth.token.email == email);
@@ -109,8 +153,8 @@ service cloud.firestore {
         && request.resource.data.date.size() <= 20
         && request.resource.data.place.size() <= 200
         && request.resource.data.message.size() <= 2000
-        && request.resource.data.via in ['email', 'gmail', 'whatsapp', 'form']
-        && (!('site' in request.resource.data) || request.resource.data.site in ['band', 'portfolio'])
+        && request.resource.data.via in ['email', 'gmail', 'whatsapp', 'form', 'zalo']
+        && (!('site' in request.resource.data) || request.resource.data.site in ['band', 'portfolio', 'developer', 'audio'])
         && request.resource.data.createdAt == request.time;
       allow read, update, delete: if isAdmin();
     }
