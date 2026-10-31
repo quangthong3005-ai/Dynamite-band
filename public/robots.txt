@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
 
 # Change this to your real domain once you have one, for example:
 # Sitemap: https://dynamiteband.com/sitemap.xml

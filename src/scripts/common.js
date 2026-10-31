@@ -116,3 +116,5 @@ export function videoCard(video) {
   wrap.append(btn, cap)
   return wrap
 }
+
+import './chat.js'

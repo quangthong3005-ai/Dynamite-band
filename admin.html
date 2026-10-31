@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Band inbox | Dynamite Band</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="border-b border-white/10 px-5 py-4 flex items-center justify-between">
+    <a href="index.html" class="font-display text-2xl text-white">Dynamite Band<span class="text-accent">.</span> <span class="text-stone-500 text-base">inbox</span></a>
+    <button id="signOut" class="btn btn-ghost btn-small" type="button" hidden>Sign out</button>
+  </header>
+  <main class="px-5 py-8 max-w-6xl mx-auto">
+    <div id="loginBox" class="card p-10 text-center max-w-md mx-auto">
+      <p class="font-display text-2xl text-white mb-4">Band members only</p>
+      <button id="signIn" class="btn btn-solid" type="button">Sign in with Google</button>
+      <p id="loginMsg" class="mt-4 text-sm text-accent" aria-live="polite"></p>
+    </div>
+    <div id="app" class="admin-grid" hidden>
+      <aside id="chatsList" class="card admin-list"></aside>
+      <section class="card admin-room">
+        <h1 id="chatTitle" class="font-display text-2xl text-white p-4 border-b border-white/10">Select a conversation</h1>
+        <div id="adminMsgs" class="chat-list admin-msgs"></div>
+        <form id="replyForm" class="chat-form" hidden>
+          <input id="replyInput" required maxlength="1000" placeholder="Reply as Dynamite Band..." autocomplete="off">
+          <button class="btn btn-solid btn-small" type="submit">Send</button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="/src/scripts/admin.js"></script>
+</body>
+</html>

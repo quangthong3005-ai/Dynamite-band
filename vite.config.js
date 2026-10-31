@@ -14,6 +14,7 @@ export default defineConfig({
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         videos: fileURLToPath(new URL('./videos.html', import.meta.url)),
         booking: fileURLToPath(new URL('./booking.html', import.meta.url)),
+        admin: fileURLToPath(new URL('./admin.html', import.meta.url)),
       },
     },
   },
