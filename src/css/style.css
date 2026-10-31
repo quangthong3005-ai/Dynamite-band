@@ -541,6 +541,8 @@ a.sch-show:hover { background: rgba(255, 122, 48, .18); }
 .cal-cell.today { border-color: #ff8a55; background: rgba(255, 122, 48, .12); }
 .cal-cell.sel { outline: 2px solid #ff8a55; }
 .cal-num { font-size: .85rem; color: #cfc9c4; display: flex; justify-content: space-between; }
+.cal-chip.qt { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+.cal-chip.both { background: linear-gradient(135deg, #ff8a4a 0%, #14b8a6 100%); }
 .cal-chip { font-size: .72rem; line-height: 1.25; background: linear-gradient(135deg, #ff8a4a, #ee5c26); color: #fff; border-radius: 6px; padding: .18rem .35rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border: 0; text-align: left; cursor: pointer; }
 .cal-more { font-size: .7rem; color: #ff9a68; }
 .cal-form { margin-top: 1.2rem; padding: 1.1rem; border: 1px solid rgba(255, 255, 255, .14); border-radius: var(--r); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }

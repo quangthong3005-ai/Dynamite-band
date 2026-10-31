@@ -112,7 +112,10 @@ service cloud.firestore {
         && (!('venue' in request.resource.data) || request.resource.data.venue.size() <= 120)
         && (!('city' in request.resource.data) || request.resource.data.city.size() <= 60)
         && (!('note' in request.resource.data) || request.resource.data.note.size() <= 140)
-        && (!('link' in request.resource.data) || request.resource.data.link.size() <= 300);
+        && (!('link' in request.resource.data) || request.resource.data.link.size() <= 300)
+        && (!('with' in request.resource.data) || request.resource.data.with.size() <= 80)
+        && (!('scope' in request.resource.data) || request.resource.data.scope in ['band', 'qt', 'both'])
+        && (!('kind' in request.resource.data) || request.resource.data.kind in ['band', 'collab', 'solo', 'session']);
       allow delete: if isAdmin();
     }
   }
