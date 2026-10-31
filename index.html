@@ -58,7 +58,7 @@
           "roleName": "Vocals",
           "member": {
             "@type": "Person",
-            "name": "Main Vocalist"
+            "name": "My Tinh"
           }
         },
         {
@@ -151,7 +151,7 @@
           Dynamites <span class="italic text-accent">Band</span>
         </h1>
         <p class="mt-8 max-w-xl text-lg md:text-xl font-light text-stone-300 leading-relaxed reveal d2">
-          Loud, tight and made for the stage. We turn every room into a night people remember.
+          <span data-text="heroTagline">Loud, tight and made for the stage. We turn every room into a night people remember.</span>
         </p>
         <div class="mt-10 flex flex-wrap gap-4 reveal d2">
           <a href="videos.html" class="btn btn-solid">Watch live</a>
@@ -178,10 +178,10 @@
         <p class="eyebrow mb-4 reveal">About the band</p>
         <h2 class="section-heading text-5xl lg:text-7xl text-white mb-10 reveal d1">Built to <span class="italic text-accent">explode</span> on stage.</h2>
         <!-- TODO: replace with the real band story, genre and history -->
-        <p class="text-lg lg:text-xl font-light text-stone-300 leading-relaxed mb-5 reveal d2">
+        <p class="text-lg lg:text-xl font-light text-stone-300 leading-relaxed mb-5 reveal d2" data-text="aboutP1">
           Dynamites Band is a group of musicians who love playing live. We bring energy, feeling and a lot of listening to every song, from small rooms to big stages.
         </p>
-        <p class="text-stone-400 leading-relaxed reveal d2">
+        <p class="text-stone-400 leading-relaxed reveal d2" data-text="aboutP2">
           Tell us about your event and we will shape the set to fit it.
         </p>
         <p class="text-stone-400 leading-relaxed mt-5 reveal d2">
@@ -197,25 +197,9 @@
         <div class="text-center mb-14 reveal">
           <p class="eyebrow mb-4">The line-up</p>
           <h2 class="section-heading text-5xl lg:text-7xl text-white">Meet the <span class="italic text-accent">band</span></h2>
-          <p class="mt-4 text-stone-500 text-sm">Tap a member to see their personal portfolio.</p>
+          <p class="mt-4 text-stone-500 text-sm" data-text="membersHint">Tap a member to learn more about them.</p>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
-          <article class="card member reveal d0"><div class="member-photo"><img src="/images/members/main-vocalist.jpg" width="720" height="1078" alt="Main vocalist of Dynamites Band" style="object-position:center 22%" loading="lazy" /></div>
-              <div class="member-body"><h3 class="font-display text-2xl text-white">Main Vocalist</h3><p class="text-sm text-accent tracking-widest uppercase mt-1">Vocals</p>
-              <span class="member-link muted">Portfolio soon</span></div></article>
-          <a class="card member reveal d0" href="https://quangthong3005-ai.github.io/musician.html" target="_blank" rel="noopener"><div class="member-photo"><img src="/images/members/quang-thong.jpg" width="960" height="960" alt="Quang Thong, Keyboards" loading="lazy" /></div>
-              <div class="member-body"><h3 class="font-display text-2xl text-white">Quang Thong</h3><p class="text-sm text-accent tracking-widest uppercase mt-1">Keyboards</p>
-              <span class="member-link">Portfolio &rarr;</span></div></a>
-          <article class="card member reveal d1"><div class="member-photo"><img src="/images/members/trung-hieu.jpg" width="1000" height="1368" alt="Trung Hieu, Leader / Guitar" loading="lazy" /></div>
-              <div class="member-body"><h3 class="font-display text-2xl text-white">Trung Hieu</h3><p class="text-sm text-accent tracking-widest uppercase mt-1">Leader &middot; Guitar</p>
-              <span class="member-link muted">Portfolio soon</span></div></article>
-          <article class="card member reveal d2"><div class="member-photo"><img src="/images/members/phuc-hoang.jpg" width="1000" height="1000" alt="Phuc Hoang, Founder / Drums" loading="lazy" /></div>
-              <div class="member-body"><h3 class="font-display text-2xl text-white">Phuc Hoang</h3><p class="text-sm text-accent tracking-widest uppercase mt-1">Founder &middot; Drums</p>
-              <span class="member-link muted">Portfolio soon</span></div></article>
-          <article class="card member reveal d0"><div class="member-photo"><img src="/images/members/bass.jpg" width="1000" height="1581" alt="Thanh Tan, Bass player" loading="lazy" /></div>
-              <div class="member-body"><h3 class="font-display text-2xl text-white">Thanh Tan</h3><p class="text-sm text-accent tracking-widest uppercase mt-1">Bass player</p>
-              <span class="member-link muted">Portfolio soon</span></div></article>
-        </div>
+        <div id="memberGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5"></div>
       </div>
     </section>
     <!-- members ./ -->
@@ -283,7 +267,7 @@
       <div class="max-w-3xl mx-auto text-center">
         <p class="eyebrow mb-5 reveal">Book us</p>
         <h2 class="section-heading text-5xl lg:text-7xl text-white mb-8 reveal d1">Your event, <span class="italic text-accent">our stage.</span></h2>
-        <p class="text-lg text-stone-400 font-light mb-10 reveal d2">Weddings, parties, festivals, corporate nights. See how booking works and send your request.</p>
+        <p class="text-lg text-stone-400 font-light mb-10 reveal d2" data-text="bookingBlurb">Weddings, parties, festivals, corporate nights. See how booking works and send your request.</p>
         <a class="btn btn-solid reveal d2" href="booking.html">Book the band &rarr;</a>
       </div>
     </section>

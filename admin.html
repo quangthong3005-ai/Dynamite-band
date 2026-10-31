@@ -26,6 +26,9 @@
     <nav class="admin-tabs" aria-label="Admin sections">
       <button class="admin-tab active" data-tab="inbox" type="button">Inbox</button>
       <button class="admin-tab" data-tab="photos" type="button">Photos</button>
+      <button class="admin-tab" data-tab="videos" type="button">Videos</button>
+      <button class="admin-tab" data-tab="members" type="button">Members</button>
+      <button class="admin-tab" data-tab="texts" type="button">Texts</button>
       <button class="admin-tab" data-tab="team" type="button" id="teamTab" hidden>Editors</button>
     </nav>
     <div id="tab-inbox" class="admin-grid">
@@ -52,6 +55,35 @@
       <div id="photoList" class="photo-admin"></div>
     </section>
 
+    <section id="tab-videos" class="card p-6" hidden>
+      <h2 class="font-display text-2xl text-white mb-1">Live videos</h2>
+      <p class="text-stone-500 text-sm mb-5">Paste a YouTube link. The newest video is the one shown on the home page; use "Make featured" to move another one to the top.</p>
+      <form id="videoForm" class="flex flex-wrap gap-3 items-center mb-4">
+        <input id="videoUrl" required placeholder="https://www.youtube.com/watch?v=..." class="admin-input grow">
+        <input id="videoTitle" maxlength="100" placeholder="Title (optional)" class="admin-input">
+        <button class="btn btn-solid btn-small" type="submit">Add video</button>
+      </form>
+      <p id="videoMsg" class="text-sm text-accent mb-4" aria-live="polite"></p>
+      <div id="videoList" class="video-admin"></div>
+    </section>
+
+    <section id="tab-members" class="card p-6" hidden>
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
+        <h2 class="font-display text-2xl text-white">Band members</h2>
+        <button id="memberAdd" class="btn btn-ghost btn-small" type="button">+ Add member</button>
+      </div>
+      <p class="text-stone-500 text-sm mb-5">Change names, roles, bios, photos and the personal portfolio link. Tick Hidden to take someone off the website.</p>
+      <p id="memberMsg" class="text-sm text-accent mb-4" aria-live="polite"></p>
+      <div id="memberList" class="member-admin"></div>
+    </section>
+
+    <section id="tab-texts" class="card p-6" hidden>
+      <h2 class="font-display text-2xl text-white mb-1">Website texts</h2>
+      <p class="text-stone-500 text-sm mb-5">Edit the main sentences on the home page. "Reset" brings back the original text.</p>
+      <p id="textMsg" class="text-sm text-accent mb-4" aria-live="polite"></p>
+      <div id="textList" class="text-admin"></div>
+    </section>
+
     <section id="tab-team" class="card p-6" hidden>
       <h2 class="font-display text-2xl text-white mb-1">Who can edit</h2>
       <p class="text-stone-500 text-sm mb-5">Add a Gmail address and that person can sign in here with Google to reply to chats and manage photos. Remove it any time to take access back.</p>
@@ -64,5 +96,6 @@
     </div>
   </main>
   <script type="module" src="/src/scripts/admin.js"></script>
+  <script type="module" src="/src/scripts/admin-content.js"></script>
 </body>
 </html>
