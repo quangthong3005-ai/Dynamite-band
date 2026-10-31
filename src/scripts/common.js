@@ -118,3 +118,4 @@ export function videoCard(video) {
 }
 
 import './chat.js'
+import './contactbox.js'

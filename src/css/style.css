@@ -144,3 +144,10 @@ a.member:hover .member-photo img { transform: scale(1.05); filter: none; }
 .admin-room { display: flex; flex-direction: column; min-height: 0; }
 .admin-msgs { min-height: 0; }
 @media (max-width: 720px) { .admin-grid { grid-template-columns: 1fr; height: auto; } .admin-list { max-height: 30svh; } .admin-room { height: 60svh; } }
+
+/* contact message box */
+.contact-box { background: var(--surface); color: #e7e5e4; border: 1px solid var(--line); padding: 1.75rem; width: min(520px, calc(100vw - 2rem)); margin: auto; }
+.contact-box::backdrop { background: rgba(0, 0, 0, .8); }
+
+.email-link { cursor: pointer; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, var(--color-accent) 60%, transparent); color: #fff; }
+.email-link:hover { color: var(--color-accent); }
